@@ -1,0 +1,10 @@
+<ProxyEndpoint name="default">
+  <Description>Generated proxy</Description>
+  <HTTPProxyConnection>
+    <BasePath>/v1/api</BasePath>
+    <VirtualHost>default</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>
