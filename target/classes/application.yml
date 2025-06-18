@@ -1,4 +1,6 @@
 app:
+  apigee:
+    apiName: petstore-v1
   github:
     username: 
     token: 

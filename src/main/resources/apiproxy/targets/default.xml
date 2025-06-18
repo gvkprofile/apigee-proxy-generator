@@ -1,4 +1,5 @@
 <TargetEndpoint name="default">
+  <Description>Default TargetEndpoint</Description>
   <HTTPTargetConnection>
     <URL>https://example.com</URL>
   </HTTPTargetConnection>

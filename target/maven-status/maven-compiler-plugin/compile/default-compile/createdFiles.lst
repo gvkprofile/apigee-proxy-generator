@@ -1,0 +1,3 @@
+com\example\apigeeproxy\controller\ProxyController.class
+com\example\apigeeproxy\ApigeeProxyApplication.class
+com\example\apigeeproxy\service\ProxyService.class

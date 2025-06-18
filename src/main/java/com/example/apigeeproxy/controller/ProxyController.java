@@ -1,29 +1,44 @@
 package com.example.apigeeproxy.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.apigeeproxy.service.ProxyService;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/proxy")
 public class ProxyController {
 
-    private final ProxyService proxyService;
+    @Autowired
+    private ProxyService proxyService;
 
-    public ProxyController(ProxyService proxyService) {
-        this.proxyService = proxyService;
+    @PostMapping("/generate")
+    public ResponseEntity<String> generateProxy(
+        @RequestParam String oasPath,
+        @RequestParam String repoUrl,
+        @RequestParam String ghUser,
+        @RequestParam String ghToken
+    ) {
+        try {
+            String result = proxyService.generateProxyBundleAndPush(oasPath, repoUrl, ghUser, ghToken);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
-    @PostMapping("/generate-proxy")
-    public ResponseEntity<String> generateProxy(
-            @RequestParam String oasUrl,
-            @RequestParam String repoUrl) {
+
+    @PostMapping("/generate-spring")
+    public String generateSpringCode(@RequestParam String oasPath, @RequestParam String outputDir) {
         try {
-            String res = proxyService.generateProxyAndPush(oasUrl, repoUrl);
-            return ResponseEntity.ok(res);
+            return proxyService.generateSpringClasses(oasPath, outputDir);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error: " + e.getMessage());
+            return "Error generating Spring code: " + e.getMessage();
         }
     }
 }

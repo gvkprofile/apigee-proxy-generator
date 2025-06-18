@@ -1,5 +1,5 @@
 <ProxyEndpoint name="default">
-  <Description>Generated proxy</Description>
+  <Description>Default ProxyEndpoint</Description>
   <HTTPProxyConnection>
     <BasePath>/v1/api</BasePath>
     <VirtualHost>default</VirtualHost>

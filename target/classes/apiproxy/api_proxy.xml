@@ -1,0 +1,11 @@
+<APIProxy name="sample-api">
+  <Description>Generated Apigee proxy from OAS</Description>
+  <CreatedAt>0</CreatedAt>
+  <LastModifiedAt>0</LastModifiedAt>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>
